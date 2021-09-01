@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rest参数</title>
+</head>
+<body>
+    <script>
+        function mutiple(...args){
+            let result = 1
+            for(var val of args){
+                result *= val
+            }
+            console.log(result);
+            return result
+        }
+
+        mutiple(1, 2, 3); // 6
+    </script>
+</body>
+</html>

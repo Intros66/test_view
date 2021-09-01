@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扩展运算符</title>
+</head>
+<body>
+    <script>
+        /* 扩展运算符 */
+        let bar = { a: 1, n: 2}
+        let baz = { ...bar, c: 3}
+        console.log(baz); // {a: 1, n: 2, c: 3}
+
+        let ba = Object.assign({}, bar, {c: 3})
+        console.log(ba);
+
+        let x = { x: 1, y: 2}
+        let y = { ...x, y: 3}
+        console.log(y); // {x: 1, y: 3}
+
+
+        /* 数组扩展运算符 */
+        console.log(...[1, [2,3,[4,5,6,[7]]],23]);
+
+        // 将数组转换成参数序列
+        function add(x, y){
+            return x + y;
+        }
+        const numbers = [1, 2];
+        console.log(add(...numbers));  // 3
+
+        // 扩展运算符与解构赋值结合，生成数组
+        const [first, ...rest] = [1, 2, 3, 4, 5]
+        // 字符串转数组
+        var strToArr = [...'hello'] // ["h", "e", "l", "l", "o"]
+        // const [...arrs, last] = [1, 2, 3, 4] //  Rest element must be last element
+    </script>
+</body>
+</html>
