@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类型转换</title>
+</head>
+<body>
+    <script>
+
+        console.log('string----');
+        console.log(String(null)); // 'null'
+        console.log(String(undefined)); // 'undefined'
+        console.log(String(1)); // '1'
+        console.log(String(1100000000000000001545540)); // '1.1e+24'
+        console.log(String(Symbol(name))); // 'Symbol(name)',只允许显式强制类型转换，隐式会报错
+        console.log(String({})); // '[object Object]'
+
+        console.log('number----');
+        console.log(Number(NaN)); // NaN
+        console.log(Number(null)); // 0
+       // console.log(Number(Symbol(1))); // Cannot convert a Symbol value to a number
+        console.log(Number(true)); // true: 1  false: 0
+        console.log(Number({})); // NaN
+        console.log(Number(['1'])); // 1 
+
+        console.log('boolean-----');
+        console.log(Boolean(undefined)); // false
+        console.log(Boolean(null));
+        console.log(Boolean(false));
+        console.log(Boolean(+0));
+        console.log(Boolean(-0));
+        console.log(Boolean(NaN));
+        console.log(Boolean(""));
+        console.log(Boolean(1)); // true
+    </script>
+</body>
+</html>

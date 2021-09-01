@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>几种数据类型</title>
+</head>
+<body>
+    <script>
+        // string number boolean null undefined symbol bigint  存在栈中
+        // object   对象的地址值存在栈中，内容存在堆中
+        console.log('typeof ====');
+        console.log(typeof '2');   //string
+        console.log(typeof 2);      // number
+        console.log(typeof true);   // boolean
+        console.log(typeof Symbol(1));  // symbol  不能用new，因为时原始数据类型，不是对象。 表示独一无二的值，最大用法是定义对象中唯一属性名
+        console.log(typeof BigInt(3));  // bigint  当使用 BigInt 时，带小数的运算会被取整。对任何 BigInt 值使用 JSON.stringify() 都会引发 TypeError，因为默认情况下 BigInt 值不会在 JSON 中序列化
+        console.log(typeof undefined);  // undefined
+        console.log(typeof null);   // object
+        console.log(typeof {});     // object
+        console.log(typeof function(){});   // function
+
+        console.log('========');
+
+        console.log('instanceof====');
+        console.log(true instanceof Boolean);
+        console.log('str' instanceof String);
+        console.log(Symbol(1) instanceof Symbol);
+        console.log([] instanceof Array);
+        console.log(function(){} instanceof Function);
+        console.log({} instanceof Object);
+
+        console.log('========');
+
+        console.log('constructor====');
+        console.log((2).constructor === Number);
+        var a = {}
+        console.log(Object.prototype.toString.call(new Date())); // [object Date]
+        console.log(Object.prototype.toString.call(function(){})); // [object Function]
+        console.log(Object.prototype.toString.call([])); // [object Array]
+        console.log(Object.prototype.toString.call(/\.js$/)); // [object RegExp]
+        console.log(Object.prototype.toString.call(Math.random())); // [object number]
+        console.log(Object.prototype.toString.call(Math)); // [object Math]
+        console.log(Object.prototype.toString.call(undefined)); // [object Undefined]
+        console.log(Object.prototype.toString.call('1')); // [object string]
+        console.log(Object.prototype.toString.call(JSON)); // [object JSON]
+
+        var obj = [1, 2, 3, 4, 5]
+        console.log(Object.prototype.toString.call(obj).slice(8, -1) === 'Array');
+        console.log(obj.__proto__ === Array.prototype);
+        console.log(Array.isArray(obj));
+        console.log(obj instanceof Array);
+    </script>
+</body>
+</html>

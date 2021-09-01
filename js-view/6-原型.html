@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原型</title>
+</head>
+
+<body>
+    <script>
+        // obj 是 Object构造函数的实例化对象
+        var obj = new Object()
+        console.log(obj);
+        // [[Prototype]] = __proto__  隐式原型属性
+        // 1. 函数的显示原型属性都默认指向空的Object对象(Object除外)
+                function x(){}
+                //var x = new Function()
+                console.log(x.prototype);
+        // 2. 所有函数的隐式原型都指向Function构造函数的显式原型
+                
+        // 3. 原型链的尽头是 null
+    </script>
+</body>
+
+</html>
