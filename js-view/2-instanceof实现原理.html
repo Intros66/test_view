@@ -10,15 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>instanceof原理</title>
 </head>
-<<<<<<< HEAD
-<body>
-    <script>
-        function myIntanceof(left, right){
-            // 获取实例对象的原型
-            let proto = Object.getPrototypeOf(left)
-            // 获取构造函数的原型对象
-            let prototype = Object.getPrototypeOf(right)
-=======
 
 <body>
     <script>
@@ -27,7 +18,6 @@
             let proto = Object.getPrototypeOf(left)
             // 获取构造函数的原型对象
             let prototype = right.prototype
->>>>>>> dc10b252f5ec7d84d148a7c5de2049583d562408
 
             // 判断构造函数的prototype是否在实例对象的原型链上
             while(true){
@@ -38,13 +28,6 @@
             }
         }
 
-<<<<<<< HEAD
-        const a = {name: 'tom'}
-        console.log(myIntanceof(Object, a));
-        console.log(a instanceof Object);
-    </script>
-</body>
-=======
 
         const a = {
             name: 'tom'
@@ -54,5 +37,4 @@
     </script>
 </body>
 
->>>>>>> dc10b252f5ec7d84d148a7c5de2049583d562408
 </html>
