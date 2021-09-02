@@ -1,4 +1,4 @@
-JS
+# JS
 
 ## 数据类型
 
@@ -599,6 +599,69 @@ objectFactory(构造函数, 初始化参数);
 | 迭代     |           Map 是 iterable 的，所以可以直接被迭代。           | 迭代Object需要以某种方式获取它的键然后才能迭代。（Object.keys(obj)） |
 | 性能     |              在频繁增删键值对的场景下表现更好。              |          在频繁添加和删除键值对的场景下未作出优化。          |
 
+**map**
+
+- Map.prototype.size
+  - size是可访问属性，用于返回一个Map对象的成员数量
+- Map.prototype.clear()
+  - 移除Map对象中的所有元素
+- Map.prototype.delete()
+  - 移除Map对象中的指定元素
+- Map.prototype.entries()
+  - 返回一个新的包含[key, value]的`Iterator`对象，返回的迭代器插入顺序与Map对象的插入顺序相同
+- Map.prototype.forEach()
+  - 按照插入顺序依次对Map中每个键/值对执行一次给定的函数
+- Map.prototype.get()
+  - 返回某个Map对象中的一个指定元素
+- Map.prototype.has()
+  - 返回一个boolean值，表明map中是否含有该元素
+- Map.prototype.keys()
+  - 返回一个引用的`Iterator`对象，包含按照插入顺序Map对象中每个元素的key值
+- Map.prototype.set()
+  - 为Map对象添加或更新一个指定了key和value的新键值对
+- Map.prototype.values()
+  - 返回一个新的`Iterator`对象，包含按顺序插入Map对象中每个元素的value值
+
+```js
+ const maps = new Map()
+ maps.set('0', 'one');
+maps.set('0', '2');
+maps.set('1', 'two');
+maps.set('2', 'three');
+maps.set('3', 'four');
+maps.set('4', 'five');
+maps.set('5', 'six');
+
+// size 查看Map的成员数量
+console.log(maps.size); // 6
+// 获取指定元素的值
+console.log(maps.get('0')); // 2
+// 添加/修改指定key的value 并返回修改后的Map对象
+console.log(maps.set('1', 'NiHao')); // {"0" => "2", "1" => "NiHao"}
+// 删除指定元素 返回boolean
+console.log(maps.delete('0'));
+// 遍历value
+maps.forEach(map => {
+    console.log(map);
+})
+// 返回一个迭代器对象，包含key 和 value
+console.log(maps.entries().next().value); // ["1", "NiHao"]
+// 返回一个迭代器对象
+console.log(maps.keys().next().value) // 1
+// 返回一个迭代器对象
+console.log(maps.values().next().value); // 'NiHao'
+// 判断是否包含某个元素
+console.log(maps.has('3')); // true
+// 清空Map成员
+maps.clear();
+console.log(maps); // Map(0){}
+
+const obj = { name: 'tom', age: 12}
+console.log(Object.keys(obj)); //  ["name", "age"]
+console.log(Object.values(obj)); // ["tom", 12]
+console.log(obj.hasOwnProperty('1')); // false
+```
+
 ### 3. map和weakMap的区别
 
 - Map 数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。
@@ -1091,6 +1154,53 @@ Axios 是一种基于Promise封装的HTTP客户端，其特点如下：
 
 
 
+## 五、执行上下文与作用域链
+
+### 执行栈(Execution Context Stack)
+
+- 执行栈栈顶的执行上下文称为当前执行上下文
+- JS代码总是在当前上下文中运行
+- 意思是JS代码中需要用到的资源，到当前执行上下文上查找
+- 后进先出
+
+![image-20210902222914943](assets/image-20210902222914943.png)
+
+### 4种情况会创建新的执行上下文
+
+- **进入全局代码**
+- **进入function函数体代码**
+- 进入eval函数参数指定的代码
+- 进入module代码
+
+**1. var和function声明创建在全局对象中，而let const class声明的变量创建在全局scope（词法环境）中**
+
+**2. 先到全局scope（词法环境）中找变量（let/const定义的），找不到再到全局对象中查找**
+
+**3. let const class声明的名称不能重复**
+
+**4. let const class 和 var function的名字不能重复**
+
+**5. var 和 function名字重复的，function声明的函数名优先（函数提升优先，后执行）**
+
+![image-20210902215850989](assets/image-20210902215850989.png)
+
+
+
+顶级函数在全局对象上创建时，函数对象‘体内’会保存函数创建时的执行上下文的文本环境
+
+
+
++ 全局执行上下文一般由浏览器创建，代码执行时就会创建；函数执行上下文只有函数被调用时才会创建，调用多少次函数就会创建多少上下文。
++ 调用栈用于存放所有执行上下文，满足FILO规则。
++ 执行上下文创建阶段分为绑定this，创建词法环境，变量环境三步，两者区别在于词法环境存放函数声明与const let声明的变量，而变量环境只存储var声明的变量。
++ 词法环境主要由环境记录与外部环境引入记录两个部分组成，全局上下文与函数上下文的外部环境引入记录不一样，全局为null，函数为全局环境或者其它函数环境。环境记录也不一样，全局叫对象环境记录，函数叫声明性环境记录。
++ 你应该明白了为什么会存在变量提升，函数提升，而let const没有。
++ ES3之前的变量对象与活动对象的概念在ES5之后由词法环境，变量环境来解释，两者概念不冲突，后者理解更为通俗易懂。
+
+
+
+**在函数定义时，会创建一个作用域链，这个是会包含全局或者嵌套父函数的作用链，这是已经固定了的。但是当这个定义完的函数执行之后，会生成执行上下文，然后其中包含了新的作用域链，这是一条在之前基础上，新的作用域链。**
+
 
 
 
@@ -1156,7 +1266,6 @@ Axios 是一种基于Promise封装的HTTP客户端，其特点如下：
 ### 原型链
 
 ![在这里插入图片描述](assets/原型链.png)
-
 
 
 
