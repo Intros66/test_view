@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxy</title>
+</head>
+<body>
+    <script>
+        // target 代表需要代理的对象，handler用来自定义对象中的操作，比如可以用来自定义set或get函数   
+        // let p = new Proxy(target, handler)
+        var x = {name: '张三'}
+        let p = new Proxy(x, {
+            /* 
+                get方法用于拦截对象的读取属性操作
+                @target 目标对象
+                @property  被获取的属性名/symbol类型
+                @receiver   Proxy或者继承Proxy的对象
+            */
+            get: function(target, property, receiver) {
+                console.log('属性：' + property, receiver );
+                return Reflect.get(target, property, receiver)
+            },
+            /* 
+                set方法是设置属性值操作的捕获器
+                @target 目标对象
+                @property  将被设置的属性名或 Symbol
+                @value      新属性值
+                @receiver   最初被调用的对象。通常是 proxy 本身，但 handler 的 set 方法也有可能在原型链上，或以其他方式被间接地调用（因此不一定是 proxy 本身）
+            */
+           set: function(target, property, value, receiver){
+                target[property] = value;
+                console.log('property set: ' + property + ' = ' + value);
+                return Reflect.set(target, property, value)
+           }
+
+        })
+        p.name
+        p.name = 'llis'
+    </script>
+</body>
+</html>

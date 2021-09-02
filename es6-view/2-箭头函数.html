@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>箭头函数</title>
+</head>
+<body>
+    <script>
+        // 没有参数
+        const fn1 = ()=> {console.log('我是没有参数的箭头函数', this);}
+        // 只有一个参数
+        const fn2 = x => {console.log(x);}
+        // 多个参数
+        const fn3 = (x, y, z) => {console.log(x, y, z);}
+        // 返回值只有一句
+        const fn4 = ()=> console.log('我是只有一句返回值的箭头函数');
+        // 不需要返回值，且只有一句话
+        //const fn5 = ()=> void doesNotReturn();
+        const fn5 = ()=> void console.log('不需要返回值，且只有一句话的箭头函数');;
+
+        // 没有自身this，只会继承上一层作用域中的this
+        // 所以箭头函数中this的指向在它在定义时已经确定了，之后不会改变
+        fn1()
+        fn2(2)
+        fn3(4, 5, 6)
+        fn4()
+        fn5()
+
+        // call()、apply()、bind()等方法不能改变箭头函数中this的指向
+        var id = 'Global';
+        let fun1 = () => {
+            console.log(this.id);
+        };
+        fun1();
+        fun1.apply({id: 'obj'})
+        fun1.call({id: 'obj'})
+        fun1.bind({id: 'obj'})
+    </script>
+</body>
+</html>

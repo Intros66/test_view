@@ -8,14 +8,60 @@
 </head>
 <body>
     <script>
+<<<<<<< HEAD
+=======
+        // 1.块作用域
+>>>>>>> dc10b252f5ec7d84d148a7c5de2049583d562408
         {
             let x = 1
             var a = 10
         }
         console.log(a); // 10 
+<<<<<<< HEAD
         console.log(x); // x is not defined
         console.log(b); // Cannot access 'b' before initialization
         let b  
+=======
+        //console.log(x); // x is not defined
+        
+        // 2.变量提升
+        //console.log(m)
+        console.log(n)
+        //console.log(b); // Cannot access 'b' before initialization
+        var n
+        let b ;
+        //const m; // Missing initializer in const declaration
+        
+        // 3.是否添加全局属性
+        b = 1;
+        const m = 3;
+        //console.log(window); // 没有m 和 b 
+
+        // 4.重复声明变量
+        //let b = 2  // Identifier 'b' has already been declared
+        //const m = 4 // Identifier 'm' has already been declared
+
+        // 5.暂时性死区
+        // const和let定义变量之前，该变量无法使用
+        
+        // 6.初始化
+        // 只有const必须设置初始值
+
+        // 7.能否改变指针指向
+        var obj1 = {}
+        let obj2 = {}
+        const obj3 = {}
+        obj1 = {name:'Tom'}
+        obj2 = {age: 12}
+        //obj3 = {gender: '男'} // Assignment to constant variable.
+        console.log(obj1);
+        console.log(obj2);
+        console.log(obj3);
+
+        const arr = [1,2,3]
+        arr.shift()
+        console.log(arr); // [2,3]
+>>>>>>> dc10b252f5ec7d84d148a7c5de2049583d562408
     </script>
 </body>
 </html>
