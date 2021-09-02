@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for in 和 for of</title>
+</head>
+<body>
+    <script>
+        const obj = {
+            name: 'tom',
+            age: 12,
+            gender: '男',
+            class: {
+                subject: '英语',
+                lesson: 20
+            }
+        }
+
+        const arr = [{
+            subject: '英语',
+            lesson: 20
+        }, 'tom', 12]
+
+        for (const key in obj) {
+            console.log(key);
+        }
+
+        for (const iterator of arr) {
+            console.log(iterator);
+        }
+        const objToArr = Reflect.ownKeys(obj)
+        for (const iterator of objToArr) {
+            console.log(iterator);
+        }
+    </script>
+</body>
+</html>

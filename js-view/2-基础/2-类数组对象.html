@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类数组对象</title>
+</head>
+<body>
+    <script>
+        const obj = {
+            0: 'tom',
+            1: 12,
+            2: 'npb',
+            length: 5
+        }
+        // 返回一个新的数组对象,浅拷贝
+        console.log(Array.prototype.slice.call(obj)); // ["tom", 12, "npb", empty × 2]
+        // 删除或替换现有元素或者原地添加新的元素来修改数组
+        console.log(Array.prototype.splice.call(obj, 0)); // ["tom", 12, "npb", empty × 2]
+        (function(){
+            // concat 合并数组
+            console.log(Array.prototype.concat.apply([],arguments)); // [1, 2, 3]
+            // 从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例
+            console.log(Array.from(arguments)); // [1, 2, 3]
+        })(1,2,3)
+        
+    </script>
+</body>
+</html>

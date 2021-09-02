@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+</head>
+<body>
+    <script>
+        const url = 'http://v.juhe.cn/joke/content/list.php'
+        const data = {
+            key: '0d47076f636d2fdb5ea70e6311aaf4db',
+            time: new Date().toTimeString
+        }
+        const xhr = new XMLHttpRequest()
+        xhr.open('get',url)
+        xhr.setRequestHeader('Content-type', 'application/json')
+        xhr.setRequestHeader('iii', 'you')
+        xhr.send()
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4){
+                if(xhr.status >= 200 && xhr.status < 300){
+                    console.log(xhr.response);
+                }else {
+                    console.error(xhr.status, xhr.statusText);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
