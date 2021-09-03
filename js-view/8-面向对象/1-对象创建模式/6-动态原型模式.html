@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态原型模式</title>
+</head>
+<body>
+    <script>
+        function Person(name, age){
+            this.name = name 
+            this.age = age
+            if(typeof this.say !== 'function'){
+                console.log('我只执行一次')
+                Person.prototype.say = function(){
+                    console.log("Hello，I'm " + this.name + "，" + this.age + ' years old')
+                }
+            }
+        }
+        const p1 = new Person('wede', 23)
+        const p2 = new Person('kitty', 11)
+        console.log(p1, p2);
+
+        console.log('-----------');
+        function Family(){
+            this.father = 'hahah'
+        }
+        Family.prototype.father = 'father'
+        const family = new Family()
+        console.log(family.father); // hahah
+    </script>
+</body>
+</html>

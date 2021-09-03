@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内存溢出与内存泄漏</title>
+</head>
+<body>
+    <script>
+        // 内存溢出
+        var obj = {}
+        for (let i = 0; i < 1000; i++) {
+            obj[i] = new Array(10000000)
+            console.log('------');
+        }
+        
+        // 内存泄漏
+        // 1. 意外的全局变量
+        function fn(){
+            let a = new Array(10000)
+            console.log(a);
+        }
+        fn()
+        
+        // 没有及时清理定时器或回调函数
+        var intervalid = setInterval(()=>{   // 启动循环定时器后不清理
+            console.log('----');
+        }, 1000)
+
+        clearInterval(intervalid)
+
+        // 闭包
+        function fn1(){
+            var a = 4
+            function fn2(){
+                console.log(++a);
+            }
+            return fn2
+        }
+        var f = fn1()
+        f()
+        // f = null
+    </script>
+</body>
+</html>

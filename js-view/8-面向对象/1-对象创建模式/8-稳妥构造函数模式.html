@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>稳妥构造函数模式</title>
+</head>
+<body>
+    <script>
+        function  Person(para_name, para_age){
+            // 创建要返回的对象
+            const obj = {}
+            // 定义私有属性和方法
+            const name = para_name
+            const age = para_age
+            const sayAge = function(){
+                console.log(age);
+            }
+            // 定义公共方法
+            obj.sayName = function(){
+                console.log(name);
+            }
+            // 返回对象
+            return obj
+        }
+
+        const person = Person('Niko', 29) // 创建实例
+        person.sayName()    // Niko
+        console.log(person.name);   // undefined
+        person.sayAge() // sayAge is not a function
+    </script>
+</body>
+</html>

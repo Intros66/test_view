@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>借用构造函数继承</title>
+</head>
+<body>
+    <!-- 
+        1. 定义父类型构造函数
+        2. 定义子类型构造函数
+        3. 在子类型构造函数中调用父类型方法
+        关键：
+            在子类型构造函数中通用call()调用父类型构造函数
+     -->
+    <script>
+        function Person(name, age){
+            this.name = name
+            this.age = age
+        }
+
+        function Student(name, age, price){
+            // 将Person的this指向Student
+            Person.call(this, name, age) // 相当于 this.Person(name, age)
+            /* this.name = name
+            this.age = age */
+            this.price = price
+        }
+
+        const s = new Student('tom', 20, 1300)
+        console.log(s.name);
+    </script>
+</body>
+</html>

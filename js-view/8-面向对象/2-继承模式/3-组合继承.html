@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组合继承</title>
+</head>
+<body>
+    <!-- 
+        原型链继承 + 借用构造函数的组合继承 
+        方法在原型上，call使用属性，继承使用方法
+    -->
+    <script>
+        function Person(name, age){
+            this.name = name
+            this.age = age
+        }
+        Person.prototype.setName = function(name){
+            this.name = name
+        }
+
+        function Student(name, age, price){
+            // 调用Person，this是指向Person的
+            // 相当于 this.Person(name, age)
+            Person.call(this, name, age) // 为了得到属性
+            this.price = price
+        }
+        // 为了看到父类型的方法
+        Student.prototype = new Person()
+        Student.prototype.constructor = Student // 修正constructor
+        Student.prototype.setPrice = function(price){
+            this.price = price
+        }
+        
+        var s = new Student('tom', 21, 22222)
+        s.setName('bob')
+        s.setPrice(1999)
+        console.log(s); // Student {name: "bob", age: 21, price: 1999}
+    </script>
+</body>
+</html>

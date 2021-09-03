@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义构造函数</title>
+</head>
+<body>
+    <script>
+        // 定义类型
+        function Person(name, age){
+            this.name = name
+            this.age = age
+            this.setName = function(name){
+                this.name = name
+            }
+        }
+        const person1 = new Person('张三', 12)
+        person1.setName('jc')
+        console.log(person1);
+
+        function Student(name, age){
+            this.name = name
+            this.age = age
+            this.setName = function(name){
+                this.name = name
+            }
+        }
+        const student = new Student('ss', 2)
+        console.log(student);
+    </script>
+</body>
+</html>
