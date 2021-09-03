@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原型修改</title>
+</head>
+<body>
+    <script>
+        function Person(name){
+            this.name = name
+        }
+        // 修改原型，给原型对象添加方法
+        Person.prototype.getName = function(){}
+        var p = new Person('hello')
+        console.log(Person.prototype);
+        console.log(p.__proto__ === Person.prototype);  // true
+        console.log(p.__proto__ === p.constructor.prototype);   // true
+        // 重写原型
+        Person.prototype = {
+            getName: function(){}
+        }
+        var x = new Person('你好')
+        console.log(Person.prototype);
+        console.log(x.__proto__ === Person.prototype);  // true
+        console.log(x.__proto__ === x.constructor.prototype);   // false
+        console.log(x.constructor.prototype === Object.prototype);  // true
+        x.constructor = Person
+        console.log(x.__proto__ === x.constructor.prototype); // true
+        console.log(Person.prototype.constructor);  // Object
+        console.log(Person.prototype.constructor.prototype.__proto__);
+
+    </script>
+</body>
+</html>

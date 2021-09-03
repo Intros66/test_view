@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>apply-call-bind</title>
+</head>
+<body>
+    <!-- 
+        指定调用函数的this指向
+        Function.prototype.call()
+        Function.prototype.apply(实例对象, ...args)
+        Function.prototype.bind()
+     -->
+    <script>
+        function fun(city, country){
+            return this.name + city + country
+        }
+        const obj = {name: 'tom'}
+        console.log(fun.call(obj));
+        console.log(fun.apply(obj, ['Oslo', 'Norway']));
+        function Person(name, age){
+            this.name = name,
+            this.age = age,
+            this.set = function(){
+                return this.name
+            }
+        }
+        const person = new Person('zs', 12)
+        console.log(person);
+    </script>
+</body>
+</html>
